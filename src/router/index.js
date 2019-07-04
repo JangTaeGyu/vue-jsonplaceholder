@@ -26,6 +26,16 @@ export default new Router({
       path: '/posts/:postId',
       name: 'PostShow',
       component: () => import('@/views/Post/Show.vue')
+    },
+    {
+      path: '/albums',
+      name: 'AlbumIndex',
+      component: () => import('@/views/Album/Index.vue')
+    },
+    {
+      path: '/albums/:albumId',
+      name: 'AlbumShow',
+      component: () => import('@/views/Album/Show.vue')
     }
   ]
 })
