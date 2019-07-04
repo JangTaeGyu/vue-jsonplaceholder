@@ -13,9 +13,40 @@ export default new Router({
       component: () => import('@/views/Home.vue')
     },
     {
+<<<<<<< HEAD
       path: '/about',
       name: 'about',
       component: () => import('@/views/About.vue')
+=======
+      path: '/todos',
+      name: 'TodoList',
+      component: () => import('@/views/TodoList.vue')
+    },
+    {
+      path: '/posts',
+      name: 'PostIndex',
+      component: () => import('@/views/Post/Index.vue')
+    },
+    {
+      path: '/posts/:postId',
+      name: 'PostShow',
+      component: () => import('@/views/Post/Show.vue')
+    },
+    {
+      path: '/albums',
+      name: 'AlbumIndex',
+      component: () => import('@/views/Album/Index.vue')
+    },
+    {
+      path: '/albums/:albumId',
+      name: 'AlbumShow',
+      component: () => import('@/views/Album/Show.vue')
+    },
+    {
+      path: '/users',
+      name: 'UserList',
+      component: () => import('@/views/UserList.vue')
+>>>>>>> develop
     }
   ]
 })
