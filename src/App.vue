@@ -4,7 +4,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/todos">Todos</router-link> |
       <router-link to="/posts">Posts</router-link> |
-      <router-link to="/albums">Albums</router-link>
+      <router-link to="/albums">Albums</router-link> |
+      <router-link to="/users">Users</router-link>
     </div>
     <router-view/>
   </div>

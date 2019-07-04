@@ -36,6 +36,11 @@ export default new Router({
       path: '/albums/:albumId',
       name: 'AlbumShow',
       component: () => import('@/views/Album/Show.vue')
+    },
+    {
+      path: '/users',
+      name: 'UserList',
+      component: () => import('@/views/UserList.vue')
     }
   ]
 })
