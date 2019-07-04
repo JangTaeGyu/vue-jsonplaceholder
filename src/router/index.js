@@ -16,6 +16,16 @@ export default new Router({
       path: '/todos',
       name: 'TodoList',
       component: () => import('@/views/TodoList.vue')
+    },
+    {
+      path: '/posts',
+      name: 'PostIndex',
+      component: () => import('@/views/Post/Index.vue')
+    },
+    {
+      path: '/posts/:postId',
+      name: 'PostShow',
+      component: () => import('@/views/Post/Show.vue')
     }
   ]
 })
