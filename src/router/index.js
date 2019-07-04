@@ -13,11 +13,6 @@ export default new Router({
       component: () => import('@/views/Home.vue')
     },
     {
-<<<<<<< HEAD
-      path: '/about',
-      name: 'about',
-      component: () => import('@/views/About.vue')
-=======
       path: '/todos',
       name: 'TodoList',
       component: () => import('@/views/TodoList.vue')
@@ -46,7 +41,6 @@ export default new Router({
       path: '/users',
       name: 'UserList',
       component: () => import('@/views/UserList.vue')
->>>>>>> develop
     }
   ]
 })
