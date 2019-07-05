@@ -1,10 +1,25 @@
 <template>
-  <div>
-    <div class="post">
-      <h2>{{ post.title }}</h2>
-      <div class="body">{{ post.body }}</div>
+  <div id="content">
+    <div class="top">
+      <h2>포스트 상세보기<small></small></h2>
     </div>
-    <button @click="onBack">Back</button>
+    <div class="form-box bg">
+      <div class="form-group">
+        <label for="title">제목</label>
+        <input type="text" id="title" class="form-control" v-model="post.title" />
+      </div>
+      <div class="form-group">
+        <label for="content">내용</label>
+        <textarea id="content" class="form-control border h-150" v-model="post.body"></textarea>
+      </div>
+      <div class="form-group text-center">
+        <button @click="onBack" class="btn block clouds">뒤로가기</button>
+      </div>
+    </div>
+
+    <div class="top" style="margin-top: 16px;">
+      <h3>코멘트<small>{{ comments.length }} 건</small></h3>
+    </div>
     <CommentAdd />
     <CommentList :comments="comments" />
   </div>
@@ -30,11 +45,6 @@ export default {
     ]).then(() => {
       next()
     })
-  },
-  data() {
-    return {
-      buttonDisabled: false
-    }
   },
   computed: {
     ...mapGetters(['post', 'comments'])

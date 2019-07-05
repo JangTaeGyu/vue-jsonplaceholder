@@ -63,6 +63,6 @@ export default {
         this.buttonDisabled = false
       })
     }
-  },
+  }
 }
 </script>

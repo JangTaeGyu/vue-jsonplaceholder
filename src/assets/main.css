@@ -23,9 +23,11 @@ body { background-color: #F3F5F7; }
 #main { padding: 90px 0;  }
 
 /* main > container > div > content */
-.container > div > #content > .top { position: relative; margin-bottom: 16px; overflow: hidden; }
+.container > div > #content > .top { position: relative; overflow: hidden; }
 .container > div > #content > .top > h2 { display: block; line-height: 46px; font-size: 20px; font-weight: normal; }
 .container > div > #content > .top > h2 > small { margin-left: 10px; font-weight: normal; color: #7f8c8d; }
+.container > div > #content > .top > h3 { display: block; line-height: 36px; font-size: 16px; font-weight: normal; }
+.container > div > #content > .top > h3 > small { margin-left: 10px; font-size: 12px; font-weight: normal; color: #7f8c8d; }
 .container > div > #content > .bottom { margin-top: 16px; }
 
 /* board-add */
@@ -39,8 +41,37 @@ body { background-color: #F3F5F7; }
 .board > ul > li { display: table; padding: 16px 20px; width: 100%; border-bottom: 1px solid #e5e7e8; overflow: hidden; }
 .board > ul > li:last-child { border-bottom: none; }
 .board > ul > li > .board-content { width: 600px; float: left; }
+.board > ul > li > .board-content > .info { margin-bottom: 8px; }
+.board > ul > li > .board-content > .info > span { display: inline-block; margin-right: 8px; color: #808080; font-size: 12px; }
+.board > ul > li > .board-content > .info > span.info-name { color: #e67e22; font-size: 14px; }
+.board > ul > li > .board-content > .info > span.info-name::after { content: ""; display: none;  margin-left: 0; width: 0; height: 0; }
+.board > ul > li > .board-content > .info > span::after { content: ""; display: inline-block;  margin-left: 10px; margin-bottom: 3px; background: #ccc; width: 2px; height: 2px; }
+.board > ul > li > .board-content > .info > span:last-child::after { content: ""; display: none;  margin-left: 0; width: 0; height: 0; }
 .board > ul > li > .board-content > .text > a:hover { color: #555; text-decoration: underline; font-weight: normal; }
 .board > ul > li > .board-btn { width: 150px; display: table-cell; vertical-align: middle; text-align: right; }
+
+/* board > post-list */
+.board > ul.post-list > li > .board-content { width: 725px !important; }
+.board > ul.post-list > li > .board-content > .title { margin-bottom: 8px; }
+.board > ul.post-list > li > .board-content > .title > a { color: #e67e22; font-size: 14px; }
+.board > ul.post-list > li > .board-content > .title > a:hover { text-decoration: underline; }
+.board > ul.post-list > li > .board-content > .text { font-size: 12px; color: #808080; }
+
+/*  */
+.clear { overflow: hidden; }
+
+/* form */
+.form-box { padding: 32px; }
+.form-group { margin-bottom: 16px; }
+.form-group.left { float: left; margin-bottom: 16px; width: 48%; }
+.form-group.right { float: right; margin-bottom: 16px; width: 48%; }
+.form-group:last-child { margin-bottom: 0; }
+.form-group > label { display: block; padding-bottom: 8px; }
+.form-group > label > i { width: 20px; }
+.form-group > small { display: block; margin-top: 8px; font-size: 12px; }
+.form-group > small.error { color: #d63031; }
+.form-control { margin: 0; padding: 10px 5px; width: 100%; border: 0; border-bottom: 1px solid #e5e7e8; }
+.form-control.border { border: 1px solid #e5e7e8; }
 
 /* pagination */
 .pagination { text-align: center; }
@@ -62,8 +93,21 @@ body { background-color: #F3F5F7; }
 .btn.block { display: block; width: 100%; }
 
 /* button > color */
+.btn.peter-river { background: #3498db; color: #fff; border: 1px solid #2980b9; }
+.btn.peter-river:hover { background: #2980b9; }
+.btn.clouds { background: #ecf0f1; border: 1px solid #bdc3c7; }
+.btn.clouds:hover { background: #bdc3c7; }
 .btn.link { text-decoration: underline; background: #fff; }
 .btn.link:hover { color: #3498db; }
 
-/* form */
-.form-control { margin: 0; padding: 10px 5px; width: 100%; border: 0; border-bottom: 1px solid #e5e7e8; }
+/* text align */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* height */
+.h-100 { height: 100px !important; }
+.h-150 { height: 150px !important; }
+.h-200 { height: 200px !important; }
+
+.mt-15 { margin-top: 15px; }

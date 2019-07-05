@@ -1,11 +1,20 @@
 <template>
-  <div v-if="comments.length > 0">
-    <h3>Comments <small>({{ comments.length }})</small></h3>
-    <ul class="comments">
+  <div class="board bg mt-15" v-if="comments.length > 0">
+    <ul>
       <li v-for="comment in comments" :key="comment.id">
-        <p>{{ comment.name }} / {{ comment.email }}</p>
-        <p style="white-space: pre-line">{{ comment.body }}</p>
-        <button :disabled="buttonDisabled" @click="destroyComment(comment.id)">Delete</button>
+        <div class="board-content">
+          <div class="info">
+            <span class="info-name">{{ comment.name}}</span>
+            <span class="info-email">{{ comment.email}}</span>
+          </div>
+          <div class="text" style="white-space: pre-line">{{ comment.body }}</div>
+        </div>
+        <div class="board-btn">
+          <button
+            class="btn small link"
+            :disabled="buttonDisabled"
+            @click="destroyComment(comment.id)">삭제하기</button>
+        </div>
       </li>
     </ul>
   </div>

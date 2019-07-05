@@ -9,7 +9,6 @@
         <Pagination :count="count" :limit="limit" :currentPage.sync="currentPage" />
     </div>
   </div>
-
 </template>
 
 <script>

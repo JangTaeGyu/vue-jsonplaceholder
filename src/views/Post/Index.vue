@@ -1,23 +1,25 @@
 <template>
-  <div>
-    <h1>Posts</h1>
-    <ul class="posts">
-      <li v-for="post in posts" :key="post.id">
-        <router-link :to="`/posts/${post.id}`">{{ post.title }}</router-link>
-      </li>
-    </ul>
-    <Pagination :count="count" :limit="limit" :currentPage.sync="currentPage" />
+  <div id="content">
+    <div class="top">
+      <h2>포스트 목록<small>{{ this.count }} 건</small></h2>
+    </div>
+    <PostList :posts="posts" />
+    <div class="bottom">
+        <Pagination :count="count" :limit="limit" :currentPage.sync="currentPage" />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import { FETCH_POSTS } from '@/store/modules/post.type'
+import PostList from '@/components/Post/PostList.vue'
 import Pagination from '@/components/Pagination/Default.vue'
 
 export default {
   name: 'PostIndex',
   components: {
+    PostList,
     Pagination
   },
   data() {
