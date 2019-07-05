@@ -1,4 +1,6 @@
-# vue-jsonplaceholder
+# Vue, JSONPlaceholder REST API를 활용하여 사이트 만들기
+
+![샘플 이미지](./public/images/sample.png)
 
 ## Project setup
 ```
