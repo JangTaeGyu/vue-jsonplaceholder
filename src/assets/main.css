@@ -79,6 +79,13 @@ body { background-color: #F3F5F7; }
 .pagination > a:hover { font-weight: normal; }
 .pagination > a.active { color: #fff; background: #3498db; }
 
+/* photo-list */
+.photo-list { overflow: hidden; }
+.photo-list > li { position: relative; float: left; margin: 2px 2px; width: 150px; height: 150px; cursor: pointer; }
+.photo-list > li:nth-last-child(5n) { margin-right: 0; }
+.photo-list > li:hover > div.title { opacity: 1; background: #F3F5F7; }
+.photo-list > li > div.title { position: absolute; padding: 10px; width: 150px; height: 150px; font-size: 12px; text-align: center; opacity: 0; }
+
 /* background */
 .bg { background: #fff; border: 1px solid #e5e7e8; }
 .bg-warning { background: #fcf8e3; }

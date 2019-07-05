@@ -1,12 +1,9 @@
 <template>
   <div v-if="photos.length > 0">
-    <h3>Photos <small>({{ photos.length }})</small></h3>
-    <ul class="photos">
+    <ul class="photo-list">
       <li v-for="photo in photos" :key="photo.id">
-        <dl>
-          <dt>{{ photo.title }}</dt>
-          <dd><img :src="photo.thumbnailUrl" /></dd>
-        </dl>
+        <div class="title">{{ photo.title }}</div>
+        <img :src="photo.thumbnailUrl" />
       </li>
     </ul>
   </div>
@@ -23,11 +20,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.photos { list-style: none; margin: 0; padding: 0; overflow: hidden; }
-.photos > li { float: left; margin: 0 5px 10px; padding: 10px; width: 150px; height: 200px; border: 1px solid #ccc; }
-.photos > li > dl { margin: 0; }
-.photos > li > dl > dt { margin-bottom: 5px; height: 45px; overflow: hidden; }
-.photos > li > dl > dd { margin: 0; }
-</style>
