@@ -1,12 +1,29 @@
 <template>
-  <div>
-    <h1>User List</h1>
-    <ul class="users">
-      <li v-for="user in users" :key="user.id">
-        {{ user.username }}. {{ user.name }}
-        <button @click="showUserInfo(user.id)">View</button>
-      </li>
-    </ul>
+  <div id="content">
+    <div class="top">
+      <h2>사용자 목록<small>{{ users.length }} 건</small></h2>
+    </div>
+    <div class="board bg">
+      <ul class="users">
+        <li v-for="user in users" :key="user.id">
+          <div class="board-content">
+            <div class="info">
+              <span class="info-name">{{ user.username }} . {{ user.name }}</span>
+              <span class="info-email">{{ user.email }}</span>
+              <span class="info-phone">{{ user.phone }}</span>
+              <span class="info-website">{{ user.website }}</span>
+            </div>
+            <div class="text">{{ user.company.bs }}, {{ user.company.catchPhrase }}, {{ user.company.name }}</div>
+          </div>
+          <div class="board-btn">
+            <button
+              class="btn small link"
+              @click="showUserInfo(user.id)">상세보기</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
     <LayerPopup @toggleLayerPopup="toggleLayerPopup" v-if="showPopup">
       <UserInfo :user="user"></UserInfo>
     </LayerPopup>

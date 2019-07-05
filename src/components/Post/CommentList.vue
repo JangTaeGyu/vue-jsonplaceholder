@@ -4,8 +4,8 @@
       <li v-for="comment in comments" :key="comment.id">
         <div class="board-content">
           <div class="info">
-            <span class="info-name">{{ comment.name}}</span>
-            <span class="info-email">{{ comment.email}}</span>
+            <span class="info-name">{{ comment.name }}</span>
+            <span class="info-email">{{ comment.email }}</span>
           </div>
           <div class="text" style="white-space: pre-line">{{ comment.body }}</div>
         </div>
