@@ -1,13 +1,11 @@
 <template>
-  <div v-if="count > 0">
-    <ul class="pagination">
-      <li
-        v-for="page in pages"
-        :key="page"
-        @click.prevent="changePage(page)">
-        <a class="page-link" href="javascript:void(0)">{{ page }}</a>
-      </li>
-    </ul>
+  <div class="pagination" v-if="count > 0">
+    <a
+      :key="page"
+      v-for="page in pages"
+      @click.prevent="changePage(page)"
+      class="page-link"
+      href="javascript:void(0)">{{ page }}</a>
   </div>
 </template>
 
@@ -47,9 +45,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.pagination { list-style: none; margin: 0; padding: 0; }
-.pagination > li { display: inline-block; margin: 0 5px; }
-.pagination > li > a { text-decoration: none; border: 1px solid grey; padding: 2px 5px; }
-</style>

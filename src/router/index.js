@@ -14,8 +14,8 @@ export default new Router({
     },
     {
       path: '/todos',
-      name: 'TodoList',
-      component: () => import('@/views/TodoList.vue')
+      name: 'Todos',
+      component: () => import('@/views/Todos.vue')
     },
     {
       path: '/posts',
