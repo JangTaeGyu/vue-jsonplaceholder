@@ -26,9 +26,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import store from '@/store'
-import { FETCH_POST, FETCH_COMMENTS } from '@/store/modules/post.type'
+import { mapGetters } from 'vuex'
+import { FETCH_POST, FETCH_COMMENTS } from '@/store/action.types'
 import CommentAdd from '@/components/Post/CommentAdd.vue'
 import CommentList from '@/components/Post/CommentList.vue'
 
@@ -42,9 +42,7 @@ export default {
     Promise.all([
       store.dispatch(FETCH_POST, to.params.postId),
       store.dispatch(FETCH_COMMENTS, to.params.postId)
-    ]).then(() => {
-      next()
-    })
+    ]).then(next)
   },
   computed: {
     ...mapGetters(['post', 'comments'])

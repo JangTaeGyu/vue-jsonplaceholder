@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { DESTROY_COMMENT } from '@/store/modules/post.type'
+import { COMMENT_DESTROY } from '@/store/action.types'
 
 export default {
   name: 'CommentList',
@@ -41,7 +41,7 @@ export default {
       this.buttonDisabled = true
 
       Promise.all([
-        this.$store.dispatch(DESTROY_COMMENT, commentId)
+        this.$store.dispatch(COMMENT_DESTROY, commentId)
       ]).then(() => {
         this.buttonDisabled = false
       })
@@ -49,7 +49,3 @@ export default {
   }
 }
 </script>
-
-<style>
-p { margin: 5px; }
-</style>

@@ -12,10 +12,16 @@
 </template>
 
 <script>
-import { STORE_TODO } from '@/store/modules/todo.type'
+import { TODO_STORE } from '@/store/action.types'
 
 export default {
   name: 'TodoAdd',
+  props: {
+    count: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       title: ''
@@ -23,8 +29,13 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$store.dispatch(STORE_TODO, this.title)
-      this.title = ''
+      Promise.all([
+        this.$store.dispatch(TODO_STORE, { title: this.title, completed: false })
+      ]).then(() => {
+        let newCount = this.count
+        this.$emit('update:count', newCount + 1)
+        this.title = ''
+      })
     }
   }
 }
