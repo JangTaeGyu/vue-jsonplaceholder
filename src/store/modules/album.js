@@ -1,5 +1,14 @@
 import { api } from '@/store/api'
-import { FETCH_ALBUMS, FETCH_ALBUM, FETCH_PHOTOS } from './album.type'
+import {
+  SET_ALBUMS,
+  SET_ALBUM,
+  SET_PHOTOS
+} from '@/store/mutation.types'
+import {
+  FETCH_ALBUMS,
+  FETCH_ALBUM,
+  FETCH_PHOTOS
+} from '@/store/action.types'
 
 const state = {
   albums: [],
@@ -14,9 +23,9 @@ const getters = {
 }
 
 const mutations = {
-  setAlbums: (state, albums) => state.albums = albums,
-  setAlbum: (state, album) => state.album = album,
-  setPhotos: (state, photos) => state.photos = photos
+  [SET_ALBUMS]: (state, albums) => state.albums = albums,
+  [SET_ALBUM]: (state, album) => state.album = album,
+  [SET_PHOTOS]: (state, photos) => state.photos = photos
 }
 
 const actions = {
@@ -25,17 +34,17 @@ const actions = {
     params += search.page ? `_page=${search.page}&` : ''
     params += search.limit ? `_limit=${search.limit}&` : ''
     const response = await api.get(`/albums?${params}`)
-    commit('setAlbums', response.data)
+    commit(SET_ALBUMS, response.data)
   },
   async [FETCH_ALBUM]({ commit }, albumId) {
     const response = await api.get(`/albums/${albumId}`)
-    commit('setAlbum', response.data)
+    commit(SET_ALBUM, response.data)
   },
   async [FETCH_PHOTOS]({ commit }, albumId) {
     let params = ''
     params += albumId ? `albumId=${albumId}` : ''
     const response = await api.get(`/photos?${params}`)
-    commit('setPhotos', response.data)
+    commit(SET_PHOTOS, response.data)
   },
 }
 

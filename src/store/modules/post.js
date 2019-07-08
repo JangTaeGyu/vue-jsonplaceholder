@@ -1,9 +1,25 @@
 import { api } from '@/store/api'
-import { FETCH_POSTS, FETCH_POST, FETCH_COMMENTS, DESTROY_COMMENT, STORE_COMMENT } from './post.type'
+import {
+  SET_POSTS,
+  SET_POST,
+  SET_COMMENTS,
+  COMMENT_ADD,
+  COMMENT_REMOVE
+} from '@/store/mutation.types'
+import {
+  FETCH_POSTS,
+  FETCH_POST,
+  FETCH_COMMENTS,
+  COMMENT_STORE,
+  COMMENT_DESTROY
+} from '@/store/action.types'
 
 const state = {
   posts: [],
-  post: null,
+  post: {
+    title: '',
+    body: ''
+  },
   comments: []
 }
 
@@ -14,11 +30,11 @@ const getters = {
 }
 
 const mutations = {
-  setPosts: (state, posts) => state.posts = posts,
-  setPost: (state, post) => state.post = post,
-  setComments: (state, comments) => state.comments = comments,
-  destroyComment: (state, commentId) => state.comments = state.comments.filter(comment => comment.id !== commentId),
-  storeComment: (state, comment) => state.comments.unshift(comment)
+  [SET_POSTS]: (state, posts) => state.posts = posts,
+  [SET_POST]: (state, post) => state.post = post,
+  [SET_COMMENTS]: (state, comments) => state.comments = comments,
+  [COMMENT_ADD]: (state, comment) => state.comments.unshift(comment),
+  [COMMENT_REMOVE]: (state, commentId) => state.comments = state.comments.filter(comment => comment.id !== commentId)
 }
 
 const actions = {
@@ -27,25 +43,25 @@ const actions = {
     params += search.page ? `_page=${search.page}&` : ''
     params += search.limit ? `_limit=${search.limit}&` : ''
     const response = await api.get(`/posts?${params}`)
-    commit('setPosts', response.data)
+    commit(SET_POSTS, response.data)
   },
   async [FETCH_POST]({ commit }, postId) {
     const response = await api.get(`/posts/${postId}`)
-    commit('setPost', response.data)
+    commit(SET_POST, response.data)
   },
   async [FETCH_COMMENTS]({ commit }, postId) {
     let params = ''
     params += postId ? `postId=${postId}` : ''
     const response = await api.get(`/comments?${params}`)
-    commit('setComments', response.data)
+    commit(SET_COMMENTS, response.data)
   },
-  async [DESTROY_COMMENT]({ commit }, commentId) {
-    await api.delete(`/comments/${commentId}`)
-    commit('destroyComment', commentId)
-  },
-  async [STORE_COMMENT]({ commit }, comment) {
+  async [COMMENT_STORE]({ commit }, comment) {
     const response = await api.post('/comments', comment)
-    commit('storeComment', response.data)
+    commit(COMMENT_ADD, response.data)
+  },
+  async [COMMENT_DESTROY]({ commit }, commentId) {
+    await api.delete(`/comments/${commentId}`)
+    commit(COMMENT_REMOVE, commentId)
   }
 }
 

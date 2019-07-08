@@ -3,7 +3,7 @@
     <div class="top">
       <h2>앨범 목록<small>{{ this.count }} 건</small></h2>
     </div>
-    <AlbumList :albums="albums"/>
+    <AlbumList />
     <div class="bottom">
       <Pagination :count="count" :limit="limit" :currentPage.sync="currentPage" />
     </div>
@@ -11,8 +11,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { FETCH_ALBUMS } from '@/store/modules/album.type'
+import { FETCH_ALBUMS } from '@/store/action.types'
 import AlbumList from '@/components/Album/AlbumList.vue'
 import Pagination from '@/components/Pagination/Default.vue'
 
@@ -28,9 +27,6 @@ export default {
       limit: 20,
       currentPage: 1
     }
-  },
-  computed: {
-    ...mapGetters(['albums'])
   },
   watch: {
     currentPage(page) {

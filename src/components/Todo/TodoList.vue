@@ -23,13 +23,17 @@
 </template>
 
 <script>
-import { UPDATE_TODO, DESTROY_TODO } from '@/store/modules/todo.type'
+import { mapGetters } from 'vuex'
+import {
+  TODO_UPDATE,
+  TODO_DESTROY
+} from '@/store/action.types'
 
 export default {
   name: 'TodoList',
   props: {
-    todos: {
-      type: Array,
+    count: {
+      type: Number,
       required: true
     }
   },
@@ -38,18 +42,19 @@ export default {
       buttonDisabled: false
     }
   },
+  computed: {
+    ...mapGetters(['todos'])
+  },
   methods: {
     updateTodo(todo) {
-      const changeTodo = {
-        id: todo.id,
-        title: todo.title,
-        completed: !todo.completed
-      }
-
       this.buttonDisabled = true
 
       Promise.all([
-        this.$store.dispatch(UPDATE_TODO, changeTodo)
+        this.$store.dispatch(TODO_UPDATE, {
+          id: todo.id,
+          title: todo.title,
+          completed: !todo.completed
+        })
       ]).then(() => {
         this.buttonDisabled = false
       })
@@ -58,8 +63,10 @@ export default {
       this.buttonDisabled = true
 
       Promise.all([
-        this.$store.dispatch(DESTROY_TODO, todoId)
+        this.$store.dispatch(TODO_DESTROY, todoId)
       ]).then(() => {
+        let newCount = this.count
+        this.$emit('update:count', newCount - 1)
         this.buttonDisabled = false
       })
     }

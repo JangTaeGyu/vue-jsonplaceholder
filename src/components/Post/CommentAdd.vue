@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { STORE_COMMENT } from '@/store/modules/post.type'
+import { COMMENT_STORE } from '@/store/action.types'
 
 export default {
   name: 'CommentAdd',
@@ -35,11 +35,14 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
-      this.$store.dispatch(STORE_COMMENT, { name: this.name, email: this.email, body: this.body })
+    resetData() {
       this.name = ''
       this.email = ''
       this.body = ''
+    },
+    onSubmit() {
+      this.$store.dispatch(COMMENT_STORE, { name: this.name, email: this.email, body: this.body })
+      this.resetData()
     }
   }
 }

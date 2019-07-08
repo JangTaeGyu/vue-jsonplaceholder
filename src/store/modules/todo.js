@@ -1,5 +1,16 @@
 import { api } from '@/store/api'
-import { FETCH_TODOS, UPDATE_TODO, DESTROY_TODO, STORE_TODO } from './todo.type'
+import {
+  SET_TODOS,
+  TODO_ADD,
+  TODO_EDIT,
+  TODO_REMOVE
+} from '@/store/mutation.types'
+import {
+  FETCH_TODOS,
+  TODO_STORE,
+  TODO_UPDATE,
+  TODO_DESTROY
+} from '@/store/action.types'
 
 const state = {
   todos: []
@@ -10,15 +21,15 @@ const getters = {
 }
 
 const mutations = {
-  setTodos: (state, todos) => state.todos = todos,
-  storeTodo: (state, todo) => state.todos.unshift(todo),
-  updateTodo: (state, changeTodo) => {
+  [SET_TODOS]: (state, todos) => state.todos = todos,
+  [TODO_ADD]: (state, todo) => state.todos.unshift(todo),
+  [TODO_EDIT]: (state, changeTodo) => {
     const index = state.todos.findIndex(todo => todo.id === changeTodo.id)
     if (index !== -1) {
       state.todos.splice(index, 1, changeTodo)
     }
   },
-  destroyTodo: (state, todoId) => state.todos = state.todos.filter(todo => todo.id !== todoId)
+  [TODO_REMOVE]: (state, id) => state.todos = state.todos.filter(todo => todo.id !== id)
 }
 
 const actions = {
@@ -27,19 +38,19 @@ const actions = {
     route += search.page ? `_page=${search.page}&` : ''
     route += search.limit ? `_limit=${search.limit}&` : ''
     const response = await api.get(`/todos?${route}`)
-    commit('setTodos', response.data)
+    commit(SET_TODOS, response.data)
   },
-  async [UPDATE_TODO]({ commit }, changeTodo) {
+  async [TODO_STORE]({ commit }, newTodo) {
+    const response = await api.post('/todos', newTodo)
+    commit(TODO_ADD, response.data)
+  },
+  async [TODO_UPDATE]({ commit }, changeTodo) {
     const response = await api.put(`/todos/${changeTodo.id}`, changeTodo)
-    commit('updateTodo', response.data)
+    commit(TODO_EDIT, response.data)
   },
-  async [DESTROY_TODO]({ commit }, todoId) {
-    await api.delete(`/todos/${todoId}`)
-    commit('destroyTodo', todoId)
-  },
-  async [STORE_TODO]({ commit }, title) {
-    const response = await api.post('/todos', { title, completed: false })
-    commit('storeTodo', response.data)
+  async [TODO_DESTROY]({ commit }, id) {
+    await api.delete(`/todos/${id}`)
+    commit(TODO_REMOVE, id)
   }
 }
 

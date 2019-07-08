@@ -14,13 +14,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'PostList',
-  props: {
-    posts: {
-      type: Array,
-      required: true
-    }
+  computed: {
+    ...mapGetters(['posts'])
   }
 }
 </script>

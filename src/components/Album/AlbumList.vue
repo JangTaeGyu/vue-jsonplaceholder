@@ -13,13 +13,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'AlbumList',
-  props: {
-    albums: {
-      type: Array,
-      required: true
-    }
+  computed: {
+    ...mapGetters(['albums'])
   }
 }
 </script>

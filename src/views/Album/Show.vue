@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import store from '@/store'
-import { FETCH_ALBUM, FETCH_PHOTOS } from '@/store/modules/album.type'
+import { mapGetters } from 'vuex'
+import { FETCH_ALBUM, FETCH_PHOTOS } from '@/store/action.types'
 import PhotoList from '@/components/Album/PhotoList.vue'
 
 export default {
@@ -35,9 +35,7 @@ export default {
     Promise.all([
       store.dispatch(FETCH_ALBUM, to.params.albumId),
       store.dispatch(FETCH_PHOTOS, to.params.albumId)
-    ]).then(() => {
-      next()
-    })
+    ]).then(next)
   },
   data() {
     return {

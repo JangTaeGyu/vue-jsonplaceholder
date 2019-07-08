@@ -9,8 +9,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import('@/views/Home.vue')
+      redirect: '/todos'
     },
     {
       path: '/todos',
@@ -39,8 +38,8 @@ export default new Router({
     },
     {
       path: '/users',
-      name: 'UserList',
-      component: () => import('@/views/UserList.vue')
+      name: 'Users',
+      component: () => import('@/views/Users.vue')
     }
   ]
 })

@@ -1,5 +1,12 @@
 import { api } from '@/store/api'
-import { FETCH_USERS, FETCH_USER } from './user.type'
+import {
+  SET_USERS,
+  SET_USER
+} from '@/store/mutation.types'
+import {
+  FETCH_USERS,
+  FETCH_USER
+} from '@/store/action.types'
 
 const state = {
   users: [],
@@ -12,19 +19,18 @@ const getters = {
 }
 
 const mutations = {
-  setUsers: (state, users) => state.users = users,
-  setUser: (state, user) => state.user = user
+  [SET_USERS]: (state, users) => state.users = users,
+  [SET_USER]: (state, user) => state.user = user
 }
 
 const actions = {
   async [FETCH_USERS]({ commit }) {
     const response = await api.get('/users')
-    commit('setUsers', response.data)
+    commit(SET_USERS, response.data)
   },
   async [FETCH_USER]({ commit }, userId) {
     const response = await api.get(`/users/${userId}`)
-    commit('setUser', response.data)
-    return response.data
+    commit(SET_USER, response.data)
   }
 }
 
